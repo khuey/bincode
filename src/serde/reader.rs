@@ -1,6 +1,6 @@
 use std::io::Read;
 
-use byteorder::{BigEndian, ReadBytesExt};
+use byteorder::{LittleEndian, ReadBytesExt};
 use serde_crate as serde;
 use serde_crate::de::value::ValueDeserializer;
 use serde_crate::de::Error as DeError;
@@ -83,7 +83,7 @@ macro_rules! impl_nums {
             where V: serde::de::Visitor,
         {
             try!(self.read_type::<$ty>());
-            let value = try!(self.reader.$reader_method::<BigEndian>());
+            let value = try!(self.reader.$reader_method::<LittleEndian>());
             visitor.$visitor_method(value)
         }
     }

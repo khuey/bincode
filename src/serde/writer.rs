@@ -3,7 +3,7 @@ use std::u32;
 
 use serde_crate as serde;
 
-use byteorder::{BigEndian, WriteBytesExt};
+use byteorder::{LittleEndian, WriteBytesExt};
 
 use super::{Result, Error, ErrorKind};
 
@@ -55,15 +55,15 @@ impl<'a, W: Write> serde::Serializer for &'a mut Serializer<W> {
     }
 
     fn serialize_u16(self, v: u16) -> Result<()> {
-        self.writer.write_u16::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_u16::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_u32(self, v: u32) -> Result<()> {
-        self.writer.write_u32::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_u32::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_u64(self, v: u64) -> Result<()> {
-        self.writer.write_u64::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_u64::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_i8(self, v: i8) -> Result<()> {
@@ -71,23 +71,23 @@ impl<'a, W: Write> serde::Serializer for &'a mut Serializer<W> {
     }
 
     fn serialize_i16(self, v: i16) -> Result<()> {
-        self.writer.write_i16::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_i16::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_i32(self, v: i32) -> Result<()> {
-        self.writer.write_i32::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_i32::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_i64(self, v: i64) -> Result<()> {
-        self.writer.write_i64::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_i64::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_f32(self, v: f32) -> Result<()> {
-        self.writer.write_f32::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_f32::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_f64(self, v: f64) -> Result<()> {
-        self.writer.write_f64::<BigEndian>(v).map_err(Into::into)
+        self.writer.write_f64::<LittleEndian>(v).map_err(Into::into)
     }
 
     fn serialize_str(self, v: &str) -> Result<()> {
